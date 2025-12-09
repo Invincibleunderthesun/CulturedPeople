@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cultured People — Live Leaderboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <h1>Cultured People</h1>
+            <p class="tag">Professional. Playful. Cultural scoreboards.</p>
+        </div>
+
+        <div class="top-actions">
+            <button id="toggleViewBtn">Leaderboard View</button>
+            <button id="saveViewBtn">Save View</button>
+            <button id="exportBtn">Export</button>
+            <button id="importBtn">Import</button>
+            <label class="switch"><input id="useFirebase" type="checkbox"><span>Use Firebase</span></label>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="controls card">
+            <input id="nameInput" placeholder="Person name" />
+            <input id="scoreInput" type="number" placeholder="Initial score (optional)" />
+            <button id="addBtn">Add Person</button>
+
+            <div class="views">
+                <select id="viewsSelect"></select>
+                <button id="loadViewBtn">Load</button>
+                <button id="deleteViewBtn">Delete</button>
+            </div>
+
+            <!-- <p class="footer-note">Drop your meme GIFs into <code>/memes/</code> named <code>indian1.gif</code> …
+                <code>indian4.gif</code>.</p> -->
+        </section>
+
+        <section class="graph card" id="graphSection">
+            <div id="graph"></div>
+        </section>
+    </main>
+
+    <!-- Meme display container -->
+    <div id="laugh-container" aria-hidden="true"></div>
+
+    <!-- Firebase SDK (uncomment if using firebase-config.js & realtime sync) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
