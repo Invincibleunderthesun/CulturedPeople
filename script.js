@@ -79,37 +79,39 @@ function updateViewsSelect() {
 
 function render() {
     graph.innerHTML = "";
+
     const list = leaderboard ? [...people].sort((a, b) => b.score - a.score) : people;
     const maxScore = Math.max(1, ...list.map(p => p.score));
 
     list.forEach(p => {
-        const row = document.createElement("div");
-        row.className = "person-row card";
-
-        const info = document.createElement("div");
-        info.className = "info";
-        info.innerHTML = `<div class="name">${esc(p.name)}</div><div class="badge">ID: ${esc(p.id)}</div>`;
-
-        const barWrap = document.createElement("div");
-        barWrap.className = "bar-wrap";
+        const col = document.createElement("div");
+        col.className = "column";
 
         const bar = document.createElement("div");
         bar.className = "bar";
+        bar.style.height = "300px"; // total height fixed
 
         const fill = document.createElement("div");
         fill.className = "fill";
-        const width = Math.min(600, Math.round((p.score / maxScore) * 600));
-        fill.style.width = width + "px";
+        const h = Math.max(4, Math.round((p.score / maxScore) * 280));
+        fill.style.height = h + "px";
         fill.textContent = p.score;
 
         bar.appendChild(fill);
-        barWrap.appendChild(bar);
 
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = p.name;
+
+        // action buttons under name
         const actions = document.createElement("div");
-        actions.className = "person-actions";
+        actions.style.display = "flex";
+        actions.style.flexDirection = "column";
+        actions.style.marginTop = "8px";
+        actions.style.gap = "4px";
 
         const inc = document.createElement("button");
-        inc.textContent = "Increase";
+        inc.textContent = "+10";
         inc.onclick = () => changeScore(p.id, 10);
 
         const dec = document.createElement("button");
@@ -117,18 +119,18 @@ function render() {
         dec.onclick = () => changeScore(p.id, -10);
 
         const rem = document.createElement("button");
-        rem.textContent = "Remove";
+        rem.textContent = "X";
         rem.onclick = () => removePerson(p.id);
 
         actions.appendChild(inc);
         actions.appendChild(dec);
         actions.appendChild(rem);
 
-        row.appendChild(info);
-        row.appendChild(barWrap);
-        row.appendChild(actions);
+        col.appendChild(bar);
+        col.appendChild(name);
+        col.appendChild(actions);
 
-        graph.appendChild(row);
+        graph.appendChild(col);
     });
 }
 
