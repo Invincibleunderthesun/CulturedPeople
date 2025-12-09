@@ -1,54 +1,74 @@
+/* =============================
+   BASE THEME + LAYOUT
+============================= */
 :root {
     --bg: #0f1724;
     --card: #0b1220;
     --accent1: #00d4ff;
     --accent2: #ff4db8;
+    --danger: #ff3b3b;
+    --muted: rgba(255, 255, 255, 0.08);
 }
 
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: 'Poppins', system-ui, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(180deg, var(--bg), #071019);
     color: #e6eef8;
-    min-height: 100vh;
     padding: 20px;
 }
 
+/* =============================
+   TOP BAR
+============================= */
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .brand h1 {
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     background: linear-gradient(90deg, var(--accent1), var(--accent2));
     -webkit-background-clip: text;
     color: transparent;
 }
 
-.top-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap
+.top-actions button,
+.controls button {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    color: #03161a;
 }
 
+.switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =============================
+   CONTAINER
+============================= */
 .container {
     display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 18px;
-    align-items: start
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
 }
 
-@media (max-width:900px) {
+@media (max-width: 850px) {
     .container {
         grid-template-columns: 1fr;
     }
@@ -56,210 +76,155 @@ body {
 
 .card {
     background: var(--card);
-    border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.03)
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* =============================
+   INPUTS
+============================= */
 .controls input {
-    display: block;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
     border-radius: 8px;
     border: none;
-    background: rgba(255, 255, 255, 0.02);
-    color: inherit
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font-size: 0.95rem;
 }
 
-.controls button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    color: #05121a;
-    font-weight: 600;
-    cursor: pointer
-}
-
-.views {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    align-items: center
-}
-
+/* =============================
+   VIEWS DROPDOWN
+============================= */
 .views select {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
     border-radius: 8px;
     border: none;
-    background: rgba(255, 255, 255, 0.02);
-    color: inherit
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
 }
 
-.graph {
-    min-height: 420px;
-    padding: 12px
-}
-
-.person-row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 12px;
-    flex-wrap: wrap
-}
-
-.info {
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px
-}
-
-.name {
-    font-weight: 700;
-    font-size: 1rem
-}
-
-.badge {
-    font-size: 0.82rem;
-    padding: 6px 8px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03)
-}
-
-.bar-wrap {
-    flex: 1;
-    min-width: 120px
-}
-
-.bar {
-    height: 46px;
-    border-radius: 10px;
-    overflow: hidden;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    display: flex;
-    align-items: center;
-    padding: 6px;
-    gap: 8px;
-}
-
-.fill {
-    height: 34px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 12px;
-    font-weight: 700;
-    transition: width 600ms cubic-bezier(.2, .9, .2, 1);
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    color: #03161a;
-}
-
-.person-actions {
-    display: flex;
-    gap: 8px;
-    align-items: center
-}
-
-.person-actions button {
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: none;
-    background: rgba(255, 255, 255, 0.03);
-    color: inherit;
-    cursor: pointer
-}
-
-/* laugh popup */
-#laugh-container {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 24px;
-    z-index: 9999;
-    pointer-events: none
-}
-
-.laugh {
-    width: 140px;
-    height: 140px;
-    animation: laughPop 1200ms ease forwards;
-    border-radius: 12px;
-}
-
-@keyframes laughPop {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(.8)
-    }
-
-    30% {
-        opacity: 1;
-        transform: translateY(0) scale(1.05)
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-30px) scale(.9)
-    }
-}
-
-.footer-note {
-    margin-top: 14px;
-    opacity: 0.7;
-    font-size: 0.9rem
-}
-
-/* =============================== */
-/* VERTICAL GRAPH LAYOUT          */
-/* =============================== */
-
+/* =============================
+   VERTICAL GRAPH
+============================= */
 .vertical-graph {
     display: flex;
     align-items: flex-end;
-    gap: 26px;
-    height: 420px;
+    gap: 30px;
+    height: 440px;
     padding: 20px;
+    overflow-x: auto;
 }
 
 .column {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80px;
+    width: 90px;
 }
 
-.column .bar {
-    width: 60px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    overflow: hidden;
+.bar {
+    width: 70px;
+    height: 300px;
+    background: var(--muted);
+    border-radius: 12px;
     display: flex;
-    align-items: flex-end;
     justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
 }
 
-.column .fill {
+.fill {
     width: 100%;
     background: linear-gradient(180deg, var(--accent1), var(--accent2));
-    border-radius: 10px 10px 0 0;
-    transition: height 0.6s cubic-bezier(.2, .9, .2, 1);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-weight: bold;
     color: #03161a;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     padding-bottom: 6px;
+    border-radius: 12px 12px 0 0;
+    transition: height .6s cubic-bezier(.2, .9, .2, 1);
 }
 
-.column .name {
+/* =============================
+   NAME LABEL
+============================= */
+.name {
     margin-top: 12px;
     font-weight: bold;
+    font-size: 0.95rem;
     text-align: center;
+}
+
+/* =============================
+   BETTER ACTION BUTTONS
+============================= */
+.action-set {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.action-set button {
+    padding: 8px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.action-set button:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.action-set .remove {
+    background: rgba(255, 80, 80, 0.18);
+}
+
+.action-set .remove:hover {
+    background: rgba(255, 80, 80, 0.28);
+}
+
+/* =============================
+   LAUGH POPUP
+============================= */
+#laugh-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.laugh {
+    width: 140px;
+    height: 140px;
+    border-radius: 14px;
+    animation: laughPop 1.2s ease forwards;
+}
+
+@keyframes laughPop {
+    0% {
+        transform: translateY(40px) scale(0.7);
+        opacity: 0;
+    }
+
+    35% {
+        transform: translateY(0) scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-40px) scale(0.9);
+        opacity: 0;
+    }
 }

@@ -105,10 +105,7 @@ function render() {
 
         // action buttons under name
         const actions = document.createElement("div");
-        actions.style.display = "flex";
-        actions.style.flexDirection = "column";
-        actions.style.marginTop = "8px";
-        actions.style.gap = "4px";
+        actions.className = "action-set";
 
         const inc = document.createElement("button");
         inc.textContent = "+10";
@@ -119,8 +116,10 @@ function render() {
         dec.onclick = () => changeScore(p.id, -10);
 
         const rem = document.createElement("button");
-        rem.textContent = "X";
+        rem.textContent = "Remove";
+        rem.className = "remove";
         rem.onclick = () => removePerson(p.id);
+
 
         actions.appendChild(inc);
         actions.appendChild(dec);
